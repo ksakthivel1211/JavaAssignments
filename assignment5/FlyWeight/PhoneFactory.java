@@ -5,26 +5,26 @@ import java.util.HashMap;
 class PhoneFactory{
     static HashMap<String, Phone> Phones = new HashMap<>();
     
-    public static Phone getPhone(String osType) {
+    public static Phone getPhone(String phone) {
     	
     	Phone phoneObject=null;
     	
-    	if (Phones.containsKey(osType))
-    		phoneObject = Phones.get(osType);
+    	if (Phones.containsKey(phone))
+    		phoneObject = Phones.get(phone);
 		    else{
-		        switch(osType){
-		        case "Android":
-		            System.out.println("Android phone created");
-		            phoneObject = new Android();
+		        switch(phone){
+		        case "Samsung":
+		            System.out.println("Samsung phone created");
+		            phoneObject = new Samsung();
 		            break;
-		        case "IOS":
-		            System.out.println("IOS created");
-		            phoneObject = new Iphone();
+		        case "Apple":
+		            System.out.println("Apple phone created");
+		            phoneObject = new Apple();
 		            break;
 		        default :
-		            System.out.println("No such OS");
+		            System.out.println("No such Phone");
 		        }
-		        Phones.put(osType, phoneObject);
+		        Phones.put(phone, phoneObject);
 		    }	
 		return phoneObject;
     }

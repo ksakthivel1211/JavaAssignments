@@ -9,13 +9,12 @@ interface Phone{
 
 public class FlyWeightPattern {
 	static String colors[] = { "Red", "Green", "Blue", "White", "Black" };
-	static String os[] ={"Android", "IOS"};
+	static String phone[] ={"Samsung", "Apple"};
 	
 	public static void main(String[] args) {
 		for (int i = 0; i < 5; ++i) { 
 			Phone p = PhoneFactory.getPhone(getRandomPhone());
 			String targetColor=getRandomColor(); 
-			String targetPhone= getRandomPhone();
 			p.color(targetColor);
 			p.phoneFunction();
 			}
@@ -29,7 +28,7 @@ public class FlyWeightPattern {
     public static String getRandomPhone()
     {
         Random r = new Random();
-        int randInt = r.nextInt(os.length);
-        return os[randInt];
+        int randInt = r.nextInt(phone.length);
+        return phone[randInt];
     }
 }
