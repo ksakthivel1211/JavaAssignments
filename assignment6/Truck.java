@@ -14,20 +14,20 @@ public class Truck {
 		LocalTime Time;
 		LocalDateTime dateTime;
 		
-		Scanner sc = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		
 		try {
 			System.out.println("Distance:");
-			distance = sc.nextInt();
+			distance = scanner.nextInt();
 			
 			System.out.println("Speed:");
-			speed=sc.nextInt();
+			speed=scanner.nextInt();
 			
 			System.out.println("Starting Date of truck :");
-			Date=LocalDate.parse(sc.next());//2023-03-21
+			Date=LocalDate.parse(scanner.next());//2023-03-21
 			
 			System.out.println("Starting time of truck:");
-			Time=LocalTime.parse(sc.next());//11:04:44
+			Time=LocalTime.parse(scanner.next());//11:04:44
 			
 			dateTime = LocalDateTime.parse(Date+"T"+Time);
 			Destination dest = new Destination(dateTime);

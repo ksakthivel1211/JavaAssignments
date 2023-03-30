@@ -8,21 +8,21 @@ class Destination
 {
 	int actualTime,remainingTime,holidays,days,currentDayRemaining;
 	
-	LocalDateTime dt = LocalDateTime.now();
-	DayOfWeek day = dt.getDayOfWeek();
+	LocalDateTime localDateTime = LocalDateTime.now();
+	DayOfWeek day = localDateTime.getDayOfWeek();
 	DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	
-	public Destination(LocalDateTime dt)
+	public Destination(LocalDateTime localDateTime)
 	{
-		this.dt=dt;
+		this.localDateTime=localDateTime;
 	}
-	boolean isHoliday(LocalDateTime d)
+	boolean isHoliday(LocalDateTime dates)
 	{
-		return(dt.getDayOfWeek() == DayOfWeek.SUNDAY
-				||dt.getDayOfWeek() == DayOfWeek.SATURDAY)&&(dt.getDayOfMonth()>7&&dt.getDayOfMonth()<=15)
-				||(dt.getMonthValue() == 1 && d.getDayOfMonth() ==26)
-				||(dt.getMonthValue() == 8 && d.getDayOfMonth() ==15)
-				||(dt.getMonthValue() == 1 && d.getDayOfMonth() ==1);
+		return(localDateTime.getDayOfWeek() == DayOfWeek.SUNDAY
+				||localDateTime.getDayOfWeek() == DayOfWeek.SATURDAY)&&(localDateTime.getDayOfMonth()>7&&localDateTime.getDayOfMonth()<=15)
+				||(localDateTime.getMonthValue() == 1 && dates.getDayOfMonth() ==26)
+				||(localDateTime.getMonthValue() == 8 && dates.getDayOfMonth() ==15)
+				||(localDateTime.getMonthValue() == 1 && dates.getDayOfMonth() ==1);
 
 	}
 	void findArrivalTime(int distance,int speed)
@@ -30,28 +30,28 @@ class Destination
 		actualTime=distance/speed;
 		remainingTime= actualTime % 8;
 		
-		currentDayRemaining =23 - dt.getHour();
+		currentDayRemaining =23 - localDateTime.getHour();
 		
 		if(currentDayRemaining<8)
 		{
-			System.out.println("Starting date"+dt.plusDays(1).format(format));
+			System.out.println("Starting date"+localDateTime.plusDays(1).format(format));
 		}
 		else
 		{
-			System.out.println("Starting date"+dt.format(format));
+			System.out.println("Starting date"+localDateTime.format(format));
 		}
 		while((actualTime/8) > days)
 		{
-			dt =dt.plusDays(1);
+			localDateTime =localDateTime.plusDays(1);
 			
-			if(isHoliday(dt))
+			if(isHoliday(localDateTime))
 			{
 				holidays++;
 			}
 			days++;
 		}
-		dt = dt.plusDays(holidays).plusHours(remainingTime);
+		localDateTime = localDateTime.plusDays(holidays).plusHours(remainingTime);
 		
-		System.out.println("Arival date:" + dt.format(format));
+		System.out.println("Arival date:" + localDateTime.format(format));
 	}
 }
